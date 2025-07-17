@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secure Portal</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+  <!-- LOGIN SECTION -->
+  <div id="login" class="section active">
+    <div class="auth-container">
+      <div class="auth-illustration">
+        <img src="./assets/logo1.png" alt="Login Illustration">
+        <h1>Welcome Back!</h1>
+        <h2>Login to access your profile</h2>
+      </div>
+      <div class="auth-form-container">
+        <form class="auth-form login-form" onsubmit="login(event)">
+          <div class="auth-header">
+            <img src="./assets/logo.png" alt="Company Logo" class="auth-logo">
+            <h2>Login to Your Account</h2>
+          </div>
+          <div class="social-login">
+            <button type="button" class="social-btn google-btn" onclick="socialLogin('Google')">
+              <i class="fab fa-google"></i> Continue with Google
+            </button>
+            <button type="button" class="social-btn github-btn" onclick="socialLogin('GitHub')">
+              <i class="fab fa-github"></i> Continue with GitHub
+            </button>
+          </div>
+          <div class="divider"><span>or</span></div>
+          <div class="form-group">
+            <label for="username">Username or Email</label>
+            <div class="input-with-icon">
+              <i class="fas fa-user"></i>
+              <input type="text" id="username" name="username" placeholder="Enter your username or email" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-with-icon">
+              <i class="fas fa-lock"></i>
+              <input type="password" id="password" name="password" placeholder="Enter your password" required />
+              <span class="toggle-password" onclick="togglePasswordVisibility(this)">
+                <i class="fas fa-eye"></i>
+              </span>
+            </div>
+          </div>
+          <div class="form-options">
+            <label class="remember-me"><input type="checkbox" name="remember"> Remember me</label>
+            <a href="#" class="forgot-password">Forgot password?</a>
+          </div>
+          <br>
+          <div class="error" id="login-error"></div>
+          <button type="submit" class="auth-btn login-btn">
+            <span class="btn-text">Login</span>
+            <i class="fas fa-spinner fa-spin loading-icon" style="display:none;"></i>
+          </button>
+          <p class="auth-footer">Don't have an account? <a href="#" onclick="switchSection('register')"
+              class="auth-link">Register here</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- REGISTER SECTION -->
+  <div id="register" class="section">
+    <div class="auth-container">
+      <div class="auth-illustration">
+        <img src="./assets/Regboy.png" alt="Register Illustration">
+        <h2>Join Our Community!</h2>
+        <p>Create an account to unlock exclusive features and personalized content.</p>
+      </div>
+      <div class="auth-form-container">
+        <form class="auth-form register-form" name="regForm" onsubmit="register(event)">
+          <div class="auth-header">
+            <img src="./assets/logo.png" alt="Company Logo" class="auth-logo">
+            <h2>Create Your Account</h2>
+          </div>
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <div class="input-with-icon">
+              <i class="fas fa-user"></i>
+              <input type="text" id="name" name="name" placeholder="Enter your full name" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <div class="input-with-icon">
+              <i class="fas fa-envelope"></i>
+              <input type="email" id="email" name="email" placeholder="Enter your email" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pNumber">Phone Number</label>
+            <div class="input-with-icon">
+              <i class="fas fa-phone"></i>
+              <input type="tel" id="pNumber" name="pNumber" placeholder="Enter your phone number" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="reg-password">Password</label>
+            <div class="input-with-icon">
+              <i class="fas fa-lock"></i>
+              <input type="password" id="reg-password" name="password" placeholder="Create a password" required />
+              <span class="toggle-password" onclick="togglePasswordVisibility(this)">
+                <i class="fas fa-eye"></i>
+              </span>
+            </div>
+            <div class="password-strength">
+              <div class="strength-meter">
+                <span class="strength-segment"></span>
+                <span class="strength-segment"></span>
+                <span class="strength-segment"></span>
+                <span class="strength-segment"></span>
+              </div>
+              <span class="strength-text">Password Strength: <span class="strength-value"
+                  id="strength-text">Weak</span></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cPassword">Confirm Password</label>
+            <div class="input-with-icon">
+              <i class="fas fa-lock"></i>
+              <input type="password" id="cPassword" name="cPassword" placeholder="Confirm your password" required />
+              <span class="toggle-password" onclick="togglePasswordVisibility(this)">
+                <i class="fas fa-eye"></i>
+              </span>
+            </div>
+          </div>
+          <div class="form-group terms-group">
+            <label class="terms-label">
+              <input type="checkbox" name="terms" required> I agree to the <a href="#">Terms of Service</a> and <a
+                href="#">Privacy Policy</a>
+            </label>
+          </div>
+          <div class="error" id="register-error"></div>
+          <button type="submit" class="auth-btn register-btn">
+            <span class="btn-text">Register</span>
+            <i class="fas fa-spinner fa-spin loading-icon" style="display:none;"></i>
+          </button>
+          <p class="auth-footer">Already have an account? <a href="#" onclick="switchSection('login')"
+              class="auth-link">Login here</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD SECTION -->
+  <div id="dashboard" class="section">
+    <div class="dashboard-container">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <img src="./assets/logo.png" alt="Company Logo" class="sidebar-logo">
+        </div>
+        <div class="company-name"><span>
+            <h1>My Profile</h1>
+          </span></div>
+        <div class="user-profile">
+          <div class="profile-avatar">
+            <img src="./assets/logo1.png" alt="User Avatar">
+            <span class="online-status"></span>
+          </div>
+          <div class="profile-info">
+            <h3 class="profile-name" id="dashboard-username">Pradeep</h3>
+            <p class="profile-email" id="dashboard-email">pradeep@gmail.com</p>
+          </div>
+        </div>
+        <nav class="sidebar-nav">
+          <ul>
+            <li class="nav-item active"><a href="#" data-page="dashboard"><i class="fas fa-tachometer-alt"></i>
+                Dashboard</a></li>
+            <li class="nav-item"><a href="#" data-page="profile"><i class="fas fa-user"></i> Profile</a></li>
+            <li class="nav-item"><a href="#" data-page="projects"><i class="fas fa-project-diagram"></i> Projects <span
+                  class="badge">5</span></a></li>
+            <li class="nav-item"><a href="#" data-page="messages"><i class="fas fa-envelope"></i> Messages <span
+                  class="badge">12</span></a></li>
+            <li class="nav-item"><a href="#" data-page="settings"><i class="fas fa-cog"></i> Settings</a></li>
+            <li class="nav-item"><a href="#" data-page="help"><i class="fas fa-question-circle"></i> Help</a></li>
+          </ul>
+        </nav>
+        <div class="sidebar-footer">
+          <button class="logout-btn" onclick="logout()">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </button>
+        </div>
+      </aside>
+      <main class="main-content">
+        <div class="content-wrapper" id="dashboard-content">
+          <div class="student-profile">
+            <section class="profile-section">
+              <h2>👤 Student Information</h2>
+              <div class="profile-grid">
+                <div><strong>Name:</strong> <span id="student-name">Pradeep</span></div>
+                <div><strong>Email:</strong> <span id="student-email">pradeep@gmail.com</span></div>
+                <div><strong>Phone:</strong> <span id="student-phone">9876543210</span></div>
+                <div><strong>Student ID:</strong> <span id="student-id">CDH0067</span></div>
+                <div><strong>Branch:</strong> <span id="student-branch">Electronics & Communication</span></div>
+                <div><strong>Age:</strong> <span id="student-year">25</span></div>
+              </div>
+            </section>
+
+            <section class="profile-section">
+              <h2>📊 Academic Summary</h2>
+              <ul class="academic-stats">
+                <li><strong>CGPA:</strong> 8.7</li>
+                <li><strong>Credits Earned:</strong> 96 / 120</li>
+                <li><strong>Backlogs:</strong> 0</li>
+                <li><strong>Current Semester:</strong> Passed Out</li>
+              </ul>
+            </section>
+
+            <section class="profile-section">
+              <h2>📅 Attendance</h2>
+              <div class="attendance-summary">
+                <div><strong>Overall Attendance:</strong> 89%</div>
+                <div><strong>Last Month:</strong> 94%</div>
+              </div>
+            </section>
+
+            <section class="profile-section">
+              <h2>🗓️ Upcoming Events</h2>
+              <ul class="task-list">
+                <li>📘 Soft Skills - <strong>July 18</strong></li>
+                <li>🧪 MySQL- <strong>July 20</strong></li>
+                <li>🏆 Flask - <strong>July 25</strong></li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>
